@@ -1,29 +1,28 @@
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import CreatePost from './CreatePost';
+import PostOverview from './PostOverview';
+import PostDetail from './PostDetail';
 import './App.css';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src="Octocat.png" className="App-logo" alt="logo" />
-        <p>
-          GitHub Codespaces <span className="heart">♥️</span> React
-        </p>
-        <p className="small">
-          Edit <code>src/App.jsx</code> and save to reload.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </p>
-      </header>
-    </div>
+    <Router>
+      <div className="app-container">
+        <nav>
+          <ul>
+            <li><Link to="/">Create Post</Link></li>
+            <li><Link to="/posts">Post Overview</Link></li>
+          </ul>
+        </nav>
+        <Routes>
+          <Route path="/" element={<CreatePost />} />
+          <Route path="/posts" element={<PostOverview />} />
+          <Route path="/posts/:id" element={<PostDetail />} />
+        </Routes>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
